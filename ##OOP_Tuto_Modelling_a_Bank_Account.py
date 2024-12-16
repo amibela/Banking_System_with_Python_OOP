@@ -6,26 +6,26 @@ class BankAccount():
         self.name =name
         self.balance= balance
         self.interest = interest
-        type_of_transaction = ""
-        self.transaction = {"name": self.name, "type": "deposit", "balance": self.balance}
+        self.type_of_transaction = ""
+        self.transaction = (self.name,self.type_of_transaction,self.balance)
         self.transactions= []
         
         
     def deposit(self,amount):
         self.balance +=amount
-        self.transaction ={"name":self.name,"type":"deposit","balance":self.balance}
+        self.transaction =(self.name,"deposit",self.balance)
         self.transactions.append(self.transaction)
-    
+
     def withdraw(self,amount):
         
         if self.balance >= amount:
             
             self.balance -= amount
-            self.transaction ={"name":self.name,"type":"Withdraw Successful","balance":self.balance}
+            self.transaction =(self.name,"Withdraw successful",self.balance)
             self.transactions.append(self.transaction)
         else:
             print("Insufficient funds for ",self.name)
-            self.transaction ={"name":self.name,"type":"Withdraw Failed","balance":self.balance}
+            self.transaction =(self.name,"Withdraw Failed",self.balance)
             self.transactions.append(self.transaction)
  
     def check_balance(self):
@@ -39,7 +39,7 @@ class BankAccount():
         
         print(f"Transactions for {self.name}")
         for i,transaction in enumerate(self.transactions,1):
-            print(f"{i}. Type: {transaction['type']}|Balance: {transaction ['balance']}")
+            print(f"{i}. Type: {list(transaction)[1]}|Balance: {list(transaction)[2]}")
            
 #Testing:
 
