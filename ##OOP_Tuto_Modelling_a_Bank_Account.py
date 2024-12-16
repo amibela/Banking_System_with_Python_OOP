@@ -7,24 +7,25 @@ class BankAccount():
         self.balance= balance
         self.interest = interest
         type_of_transaction = ""
-        self.transaction = {self.name,type_of_transaction,self.balance}
+        self.transaction = {"name": self.name, "type": "deposit", "balance": self.balance}
         self.transactions= []
         
         
     def deposit(self,amount):
         self.balance +=amount
-        self.transaction ={self.name,"deposit",self.balance}
+        self.transaction ={"name":self.name,"type":"deposit","balance":self.balance}
         self.transactions.append(self.transaction)
+    
     def withdraw(self,amount):
         
         if self.balance >= amount:
             
             self.balance -= amount
-            self.transaction ={self.name,"Withdraw Successful",self.balance}
+            self.transaction ={"name":self.name,"type":"Withdraw Successful","balance":self.balance}
             self.transactions.append(self.transaction)
         else:
             print("Insufficient funds for ",self.name)
-            self.transaction = {self.name,"Withdraw Failed",self.balance}
+            self.transaction ={"name":self.name,"type":"Withdraw Failed","balance":self.balance}
             self.transactions.append(self.transaction)
  
     def check_balance(self):
@@ -38,10 +39,8 @@ class BankAccount():
         
         print(f"Transactions for {self.name}")
         for i,transaction in enumerate(self.transactions,1):
-            print(f"{i}. Type: {list(transaction)[1]}|Balance: {list(transaction)[2]}")
-    
-        
-        
+            print(f"{i}. Type: {transaction['type']}|Balance: {transaction ['balance']}")
+           
 #Testing:
 
 Amine_Konto = BankAccount(1234,"Amine",2.5,5000)
@@ -52,9 +51,10 @@ Amine_Konto.check_balance()
 Amine_Konto.withdraw(1000)
 Amine_Konto.print_transactions_history()
 
+
 Amine_Konto.calculate_interest()
 Amine_Konto.withdraw(1000)
-
 Amine_Konto.print_transactions_history()
 
 
+ 
